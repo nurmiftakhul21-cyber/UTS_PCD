@@ -1,0 +1,18 @@
+Analisa hasi konvulasi citra 
+1. perbandingan Visual dan nilai piksel rata-rata:
+  ~ Original: Citra asli menunjukkan detail arsitektur gedung dengan kontras yang seimbang antara area terang dan gelap.
+  ~ Low Pass Filter (LPF):
+	- Visual: Gambar tampak lebih halus dan sedikit kabur (blur). Garis-garis halus pada struktur atap gedung menjadi kurang tajam karena filter ini merata-ratakan nilai piksel dengan tetangganya.
+	- Nilai Piksel: Nilai rata-rata piksel LPF akan sangat mendekati nilai Original karena filter ini mempertahankan intensitas cahaya keseluruhan (energi rendah).
+  ~ High Pass Filter (HPF):
+	- Visual: Gambar didominasi warna hitam. Hanya garis-garis tepi struktur gedung yang muncul sebagai garis putih terang. Ini membuktikan bahwa kernel HPF berhasil melakukan deteksi tepi (edge detection).
+  	- Nilai Piksel: Nilai rata-rata piksel turun secara signifikan (mendekati nol). Hal ini terjadi karena area dengan intensitas warna yang seragam (frekuensi rendah) dikalikan dengan bobot negatif pada kernel sehingga hasilnya menjadi nol atau sangat kecil.
+  ~ Band Pass Filter (BPF/Sharpening):
+	- Visual: Gambar terlihat jauh lebih tajam dan kontrasnya meningkat dibanding citra asli. Tekstur garis pada kaca dan besi gedung terlihat lebih menonjol.
+	- Nilai Piksel: Nilai rata-rata sedikit lebih tinggi atau stabil dibanding original, namun dengan standar deviasi yang lebih tinggi karena perbedaan antara piksel terang dan gelap dipertegas.
+2. Hubungan Domain Spasial dan Domain Frekuensi:
+  ~ Domain Spasial: Proses dilakukan melalui konvolusi, yaitu menggeser kernel 3x3 ke seluruh permukaan citra dan menjumlahkan hasil kali matriks kernel dengan nilai piksel citra.
+  ~ Domain Frekuensi:
+	- LPF bertindak sebagai filter yang meloloskan frekuensi rendah (area halus) dan memblokir frekuensi tinggi (tepi/detail tajam). Hasilnya adalah reduksi noise namun gambar kehilangan ketajaman.
+	- HPF bertindak sebagai filter yang meloloskan frekuensi tinggi (perubahan intensitas mendadak seperti tepi) dan memblokir frekuensi rendah (area rata/homogen). Hasilnya adalah ekstraksi struktur tepi.
+	- BPF (Sharpening) bekerja dengan memperkuat komponen frekuensi tinggi tanpa menghilangkan seluruh komponen frekuensi rendah, sehingga detail citra menjadi lebih tajam tanpa kehilangan informasi bentuk dasarnya.
