@@ -1,0 +1,16 @@
+1. Perbedaan Persebaran Niali keabuan:
+  - Citra asli:
+	~ Visual: Menampilakn intensitas cahaya asli dari objek. jikan menggunakan gambar malam hari (seperti nightscape), mayoritas piksel akan berada di area gelap.
+	~ Histogram: Grafik cenderung menumpouk di sisi kiri (nilai mendekati 0), menunjukkan dominasi warna gelap atau low contrast pada area bayangan.
+  - Citra Negatif:
+	~ Visual: warna citra terbalik secara ekstrem (seperti klise film). area yang tadi nya sangat gelap menjadi sangat terang, dan sebaliknya.
+	~ Histogram: Merupakan pencerminan (mirror) dari histogram asli. jika histogram asli menumpuk di kiri (gelap), histogram negative akan menumpuk di sisi kanan (terang/nilau mendekati 255) karena rumus G = 255 - F.
+  - Citra logaritmik:
+	~ Visual: Citra tampak lebih terang secara keseluruhan, terutama pada bagian-bagian yang sebelumnya sangat gelap. Detail pada bayangan gedung atau langit malam mulai terlihat jelas tanpa merusak area yang sudah 	terang.
+	~ Histogram: Grafik menunjukkan distribusi nilai yang lebih menyebar ke arah kanan (menengah ke terang). Hal ini terjadi karena fungsi logaritma memetakan rentang nilai input yang sempit (gelap) menjadi rentang 	output yang lebih lebar.
+2. Keunggulan Transformasi Logaritmik disbanding Negatif:
+Transformasi logaritmik lebih bermanfaat dalam kondisi berikut:
+	~ Eksplorasi detail di area gelap: saat citra memiliki rentang dinamis yang sangat besar, transformasi logaritmik mampu "mengangkat" detail yang tersembunyi di area intensitas rendah (hitam) sehingga bisa 	dilihat oleh mata manusia.
+	~ Kompresi Nilai Piksel: Berbeda dengan negatif yang hanya membalikkan nilai, logaritmik melakukan kompresi pada nilai piksel tinggi (terang) dan ekspansi pada nilai piksel rendah (gelap).
+	~ Kegunaan Praktis: Sering digunakan pada hasil pemindaian satelit atau pengolahan spektrum Fourier di mana nilai piksel aslinya memiliki rentang yang sangat besar, sehingga tidak bisa ditampilkan secara 	normal tanpa transformasi log.
+	~ Kelemahan Negatif: Transformasi negatif seringkali hanya berguna untuk deteksi fitur tertentu secara visual (seperti pada rontgen/X-ray), namun tidak membantu memperbaiki visibilitas detail pada citra yang 	terlalu gelap atau memiliki pencahayaan buruk.
